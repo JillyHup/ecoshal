@@ -36,25 +36,33 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 <body class="bg-gray-50 text-gray-900 dark:bg-darkbg dark:text-darktext">
 
   <nav class="bg-white shadow sticky top-0 z-50 dark:bg-gray-800">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a class="text-xl font-bold text-primary" href="#">EcoShal</a>
-      <div class="space-x-6 hidden md:flex">
+    <div class="flex flex-wrap items-center justify-between max-w-screen-xl w-full mx-auto px-4 py-4">
+  
+      <!-- Kiri: Logo & Hamburger -->
+      <div class="flex items-center justify-between w-full md:w-auto">
+        <a class="text-xl font-bold text-primary" href="#">EcoShal</a>
+        <!-- Hamburger -->
+        <button id="menu-toggle" class="md:hidden text-2xl text-primary focus:outline-none">
+          ☰
+        </button>
+      </div>
+  
+      <!-- Menu Navigasi -->
+      <div id="main-menu" class="hidden md:flex ml-auto flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 mt-4 md:mt-0 md:items-center bg-white dark:bg-gray-800 px-4 py-4 md:px-0 md:py-0 shadow-md md:shadow-none z-50 rounded-lg transition-all duration-300 ease-in-out">
         <a href="#tentang" class="hover:text-primary">Tentang Kami</a>
         <a href="#layanan" class="hover:text-primary">Layanan</a>
         <a href="#solusi" class="hover:text-primary">Solusi Kami</a>
         <a href="#mitra" class="hover:text-primary">Mitra</a>
         <a href="#blog" class="hover:text-primary">Blog</a>
         <a href="#kontak" class="hover:text-primary">Kontak Kami</a>
-        <!-- Tombol toggle dark mode -->
-<button onclick="toggleDarkMode()" 
-class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hover:bg-primary hover:text-white transition">
-🌙
-</button>
-
+        <button onclick="toggleDarkMode()" class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hover:bg-primary hover:text-white transition">🌙</button>
         <button onclick="toggleLoginModal()" class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hover:bg-primary hover:text-white transition">👤</button>
       </div>
+  
     </div>
   </nav>
+  
+  
 
   <!-- Login/Signup Modal -->
 <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden justify-center items-center">
@@ -93,16 +101,23 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
     <div class="container mx-auto px-4">
       <h1 class="text-4xl font-bold mb-4">EcoShal</h1>
       <p class="text-lg mb-6">Platform yang memudahkan pengguna dalam mendaur ulang sampah dengan layanan penjemputan dan drop-off</p>
-      <a href="#fitur" class="bg-white text-primary px-4 py-2 rounded hover:bg-gray-200 transition dark:bg-darktext dark:text-primary">Lihat Fitur</a>
+      <p>EcoShal hadir sebagai solusi cerdas dan praktis dalam mendaur ulang sampah. Dengan menghadirkan layanan penjemputan dan drop-off, platform ini memudahkan siapa pun untuk berkontribusi terhadap lingkungan yang lebih bersih dan berkelanjutan. EcoShal bukan hanya sekadar layanan, tetapi juga gerakan menuju gaya hidup ramah lingkungan yang modern, efisien, dan bertanggung jawab.</p>
+      <p>Kalau kamu mau versi yang lebih santai, formal, atau ditambah dengan ajakan aksi (“Ayo daur ulang sekarang!”), tinggal bilang aja! ♻️🌱</p>
+      <div class="mt-10"> <!-- atau py-10, tergantung kebutuhan -->
+        <button onclick="scrollToFitur()" class="bg-white text-primary px-5 py-2 rounded hover:bg-gray-200 transition dark:bg-darktext dark:text-primary">
+          Lihat Fitur
+        </button>
+      </div>
+         
     </div>
   </header>
   
   <!-- Carousel/Gambar Geser -->
 <section class="relative overflow-hidden">
   <div id="carouselImages" class="flex transition-transform duration-700 ease-in-out">
-    <img src="download (1).jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 1">
-    <img src="download.jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 2">
-    <img src="Recycling Reusable Products Promoting Sustainability and Environmental Consciousness _ Premium AI-generated image.jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 3">
+    <img src="Desain tanpa judul.jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 1">
+    <img src="Desain tanpa judul (1).jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 2">
+    <img src="Desain tanpa judul (2).jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 3">
   </div>
   <!-- Tombol Navigasi -->
   <button onclick="prevSlide()" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white">⬅️</button>
@@ -113,7 +128,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
     <!-- Gambar -->
     <div>
-      <img src="Recycling Reusable Products Promoting Sustainability and Environmental Consciousness _ Premium AI-generated image.jpg" alt="Recycling Image" class="rounded-lg shadow-lg w-full" />
+      <img src="photo_2025-04-17_21-17-08.jpg" alt="Recycling Image" class="rounded-lg shadow-lg w-full" />
     </div>
 
     <!-- Konten Teks -->
@@ -288,7 +303,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
       <!-- Judul -->
       <div class="mb-10 flex justify-between items-start">
         <div>
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Solusi Kami</h2>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Solusi</h2>
           <p class="text-gray-600 dark:text-gray-300 mt-1">
             Sebuah teknologi untuk mengakhiri sampah.
           </p>
@@ -308,7 +323,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- For Everyone -->
         <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
-          <img src="https://via.placeholder.com/400x200.png?text=For+Everyone" alt="For Everyone" class="w-full h-48 object-cover">
+          <img src="Recycle Pictures _ Freepik.jpg" alt="For Everyone" class="w-full h-48 object-cover">
           <div class="p-6">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Everyone</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
@@ -322,7 +337,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
         <!-- For Business -->
         <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
-          <img src="https://via.placeholder.com/400x200.png?text=For+Business" alt="For Business" class="w-full h-48 object-cover">
+          <img src="Recycling, Once Embraced by Businesses and Environmentalists, Now Under Siege.jpg" alt="For Business" class="w-full h-48 object-cover">
           <div class="p-6">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Business</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
@@ -336,7 +351,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
         <!-- For Corporate & Brand -->
         <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
-          <img src="https://via.placeholder.com/400x200.png?text=For+Corporate" alt="For Corporate & Brand" class="w-full h-48 object-cover">
+          <img src="A simple bag made from coffee waste plastic wrap.jpg" alt="For Corporate & Brand" class="w-full h-48 object-cover">
           <div class="p-6">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Corporate & Brand</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
@@ -369,26 +384,26 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
           <div class="swiper-wrapper items-center">
             <!-- Item 1 -->
             <div class="swiper-slide flex justify-center">
-              <a href="https://id.pinterest.com/pin/275564070943832254/" target="_blank">
-                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              <a href="https://waste4change.com/blog/daur-ulang-sampah/" target="_blank">
+                <img src="Bank mandiri logo vector free.jpg" class="h-16 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <!-- Item 2 -->
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/greentech" target="_blank">
-                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              <a href="https://umsu.ac.id/berita/daur-ulang-sampah-pengertian-manfaat-dan-cara/" target="_blank">
+                <img src="BRI Logo (Bank Rakyat Indonesia) - PNG Logo Vector Brand Downloads (SVG, EPS).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <!-- Item 3 -->
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/hubid" target="_blank">
-                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              <a href="https://dlh.semarangkota.go.id/3-upaya-daur-ulang-sampah-menjadi-barang-layak-jual/" target="_blank">
+                <img src="BCA Bank Central Asia Logo PNG Transparent & SVG Vector - Freebie Supply.jpg" class="h-16 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <!-- Item 4 -->
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/indigo" target="_blank">
-                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              <a href="https://fkkmk.ugm.ac.id/dampak-rokok-bagi-kesehatan-lingkungan/" target="_blank">
+                <img src="Bank Of America Union Bank  Now Is The Time For You To Know The Truth About Bank Of America Union Bank - AH – STUDIO Blog.jpg" class="h-16 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
           </div>
@@ -409,38 +424,38 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
           <div class="swiper-wrapper items-center">
             <!-- Example item -->
             <div class="swiper-slide flex justify-center">
-              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.pertamina.com" target="_blank">
+                <img src="Pertamina Needs $100B To Increase Indonesia’s Oil Production _ OilPrice_com.jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.tokopedia.com" target="_blank">
+                <img src="@aylashopfashion • Milkshake Website Builder.jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.bukalapak.com" target="_blank">
+                <img src="Bukalapak 2020 Logo vector (_cdr).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/upnormal" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://open.spotify.com/intl-id" target="_blank">
+                <img src="download (7).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/cocacola" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.zara.com/id/" target="_blank">
+                <img src="Zara Logo.jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/fourpoints" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.adidas.co.id/?clickref=1101lAyE86bh&utm_source=partnerize&utm_medium=affiliates&utm_campaign=involve-asia" target="_blank">
+                <img src="download (8).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
             <div class="swiper-slide flex justify-center">
-              <a href="/profile/smartcity" target="_blank">
-                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              <a href="https://www.mitsubishi-motors.co.id" target="_blank">
+                <img src="download (9).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
               </a>
             </div>
           </div>
@@ -478,7 +493,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
         <!-- Card -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-          <img src="https://source.unsplash.com/600x400/?plastic,recycle" class="w-full h-48 object-cover" alt="Sampah Plastik">
+          <img src="download (3).jpg" class="w-full h-48 object-cover" alt="Sampah Plastik">
           <div class="p-5">
             <h3 class="text-xl font-semibold text-green-700 mb-2">Cara Mudah Daur Ulang Plastik di Rumah</h3>
             <p class="text-sm text-gray-600 mb-4">Belajar memilah dan mendaur ulang sampah plastik dari rumah sendiri.</p>
@@ -488,7 +503,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
         <!-- Card -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-          <img src="https://source.unsplash.com/600x400/?organic,waste" class="w-full h-48 object-cover" alt="Sampah Organik">
+          <img src="Compost life circle infographic_.jpg" class="w-full h-48 object-cover" alt="Sampah Organik">
           <div class="p-5">
             <h3 class="text-xl font-semibold text-green-700 mb-2">Manfaat Mengelola Sampah Organik</h3>
             <p class="text-sm text-gray-600 mb-4">Mulai kebun kompos kecil dan ubah sisa makanan jadi pupuk alami.</p>
@@ -498,7 +513,7 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
         <!-- Card -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
-          <img src="https://source.unsplash.com/600x400/?community,recycle" class="w-full h-48 object-cover" alt="Komunitas Daur Ulang">
+          <img src="Pandawara Ajak 1_000 Warga Bersihkan Pantai Terkotor Nomor 2 di Indonesia.jpg" class="w-full h-48 object-cover" alt="Komunitas Daur Ulang">
           <div class="p-5">
             <h3 class="text-xl font-semibold text-green-700 mb-2">Komunitas Peduli Sampah di Indonesia</h3>
             <p class="text-sm text-gray-600 mb-4">Bergabung dengan komunitas hijau dan bantu lingkungan lebih bersih.</p>
@@ -524,8 +539,8 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
         <h2 class="text-2xl font-semibold text-green-700 mb-4">Informasi Kontak</h2>
         <p class="mb-4 text-gray-600">Silakan hubungi kami melalui informasi berikut, atau kirim pesan langsung lewat formulir.</p>
         <ul class="space-y-3 text-gray-700 text-sm">
-          <li><strong>📍 Alamat:</strong> Jl. Hijau Bersih No. 123, Surabaya</li>
-          <li><strong>📞 Telepon:</strong> 0812-3456-7890</li>
+          <li><strong>📍 Alamat:</strong> Jl. Faishal Bersih No.01</li>
+          <li><strong>📞 Telepon:</strong> 0812 3456 7899</li>
           <li><strong>📧 Email:</strong> info@mallsampah.com</li>
         </ul>
       </div>
@@ -621,6 +636,16 @@ class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hov
   
   
     <script>
+      
+  function scrollToFitur() {
+    const element = document.getElementById('fitur');
+    const offset = 100; // jarak tambahan biar turun dikit
+    const y = element.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+
+
       function toggleLoginModal() {
         const modal = document.getElementById('loginModal');
         modal.classList.toggle('hidden');
@@ -711,7 +736,15 @@ window.onload = () => {
     document.documentElement.classList.add('dark');
   }
 };
-    </script>
+
+const toggleBtn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('main-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+</script>
     
 
 </body>
