@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoShal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00a86b',
+            darkbg: '#1f2937',
+            darktext: '#f3f4f6'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Swiper CDN -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; transition: all 0.3s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-darkbg dark:text-darktext">
+
+  <nav class="bg-white shadow sticky top-0 z-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a class="text-xl font-bold text-primary" href="#">EcoShal</a>
+      <div class="space-x-6 hidden md:flex">
+        <a href="#tentang" class="hover:text-primary">Tentang Kami</a>
+        <a href="#layanan" class="hover:text-primary">Layanan</a>
+        <a href="#solusi" class="hover:text-primary">Solusi Kami</a>
+        <a href="#mitra" class="hover:text-primary">Mitra</a>
+        <a href="#blog" class="hover:text-primary">Blog</a>
+        <a href="#kontak" class="hover:text-primary">Kontak Kami</a>
+        <!-- Tombol toggle dark mode -->
+<button onclick="toggleDarkMode()" 
+class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hover:bg-primary hover:text-white transition">
+🌙
+</button>
+
+        <button onclick="toggleLoginModal()" class="text-sm border border-gray-400 dark:border-gray-600 rounded px-2 py-1 hover:bg-primary hover:text-white transition">👤</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login/Signup Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden justify-center items-center">
+  <div class="bg-white dark:bg-gray-800 w-full max-w-md rounded-lg shadow-lg p-6 relative">
+    <button onclick="toggleLoginModal()" class="absolute top-2 right-3 text-gray-600 dark:text-gray-300 text-xl">&times;</button>
+
+    <div class="flex justify-center mb-6 space-x-6">
+      <button id="loginTab" onclick="showLogin()" class="text-primary font-semibold">Login</button>
+      <button id="signupTab" onclick="showSignup()" class="text-gray-500 dark:text-gray-300">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <input type="email" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+      <input type="password" placeholder="Password" class="w-full mb-2 px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+      <div class="text-right mb-4">
+        <a href="#" class="text-sm text-primary hover:underline">Forgot Password?</a>
+      </div>
+      <button class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-green-600 transition">Login</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signupForm" class="hidden">
+      <input type="text" placeholder="Nama Lengkap" class="w-full mb-4 px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+      <input type="email" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+      <input type="password" placeholder="Password" class="w-full mb-4 px-4 py-2 rounded border dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+      <button class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign Up</button>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  <header class="bg-primary text-white text-center py-20 dark:bg-green-700">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4">EcoShal</h1>
+      <p class="text-lg mb-6">Platform yang memudahkan pengguna dalam mendaur ulang sampah dengan layanan penjemputan dan drop-off</p>
+      <a href="#fitur" class="bg-white text-primary px-4 py-2 rounded hover:bg-gray-200 transition dark:bg-darktext dark:text-primary">Lihat Fitur</a>
+    </div>
+  </header>
+  
+  <!-- Carousel/Gambar Geser -->
+<section class="relative overflow-hidden">
+  <div id="carouselImages" class="flex transition-transform duration-700 ease-in-out">
+    <img src="download (1).jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 1">
+    <img src="download.jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 2">
+    <img src="Recycling Reusable Products Promoting Sustainability and Environmental Consciousness _ Premium AI-generated image.jpg" class="w-full flex-shrink-0 object-cover" alt="Slide 3">
+  </div>
+  <!-- Tombol Navigasi -->
+  <button onclick="prevSlide()" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white">⬅️</button>
+  <button onclick="nextSlide()" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white">➡️</button>
+</section>
+
+<section class="bg-white dark:bg-gray-900 py-16 px-4 md:px-16">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <!-- Gambar -->
+    <div>
+      <img src="Recycling Reusable Products Promoting Sustainability and Environmental Consciousness _ Premium AI-generated image.jpg" alt="Recycling Image" class="rounded-lg shadow-lg w-full" />
+    </div>
+
+    <!-- Konten Teks -->
+    <div>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-snug">
+        Misi Kami Menyediakan Akses Daur Ulang Bagi Semua Orang
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Teknologi Mallsampah didesain untuk menangkap limbah dari sumber timbulnya, dengan menggunakan jejaring pengepul dan pemulung lokal sebagai kunci dari rantai daur ulang di Indonesia.
+      </p>
+      
+      <!-- Statistik -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+        <div class="bg-green-600 text-white p-4 rounded-lg text-center">
+          <p class="font-bold text-lg">1jt Kg+</p>
+          <p class="text-sm">Sampah di Daur Ulang</p>
+        </div>
+        <div class="bg-green-600 text-white p-4 rounded-lg text-center">
+          <p class="font-bold text-lg">100+</p>
+          <p class="text-sm">Gudang Sortir</p>
+        </div>
+        <div class="bg-green-600 text-white p-4 rounded-lg text-center">
+          <p class="font-bold text-lg">500+</p>
+          <p class="text-sm">Kolektor Lokal</p>
+        </div>
+        <div class="bg-green-600 text-white p-4 rounded-lg text-center">
+          <p class="font-bold text-lg">30rb+</p>
+          <p class="text-sm">Pengguna</p>
+        </div>
+      </div>
+
+      <!-- Tombol CTA -->
+      <a href="#" class="text-green-600 hover:underline font-semibold inline-flex items-center">
+        Semua Tentang Kami di sini
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <section class="container mx-auto px-4 py-10 text-center" id="tentang">
+    <h2 class="text-2xl font-bold mb-3 text-center">Jenis Sampah</h2>
+    <p class="text-gray-600 mb-6 dark:text-gray-300 text-center">Lihat semua jenis sampah yang kami daur ulang.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-white rounded shadow p-4 text-center dark:bg-gray-700">
+        <img src="https://img.icons8.com/color/48/000000/paper.png" class="mx-auto"/>
+        <p class="font-semibold mt-2">Kertas</p>
+      </div>
+      <div class="bg-white rounded shadow p-4 text-center dark:bg-gray-700">
+        <img src="https://img.icons8.com/color/48/000000/plastic.png" class="mx-auto"/>
+        <p class="font-semibold mt-2">Plastik</p>
+      </div>
+      <div class="bg-white rounded shadow p-4 text-center dark:bg-gray-700">
+        <img src="https://img.icons8.com/fluency/48/metal.png" alt="Besi dan Logam" class="mx-auto"/>        
+        <p class="font-semibold mt-2">Aluminium</p>
+      </div>
+      <div class="bg-white rounded shadow p-4 text-center dark:bg-gray-700">
+        <img src="https://img.icons8.com/color/48/000000/metal.png" class="mx-auto"/>
+        <p class="font-semibold mt-2">Besi & Logam</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fitur" class="bg-gray-100 py-10 dark:bg-gray-800 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-8 text-center">Fitur Utama</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="dark:bg-gray-700 p-4 rounded">
+          <div class="text-4xl mb-2">🚛</div>
+          <h3 class="font-semibold mb-2">Penjemputan Sampah</h3>
+          <p>Tim kami menjemput sampah Anda dari rumah secara langsung.</p>
+        </div>
+        <div class="dark:bg-gray-700 p-4 rounded">
+          <div class="text-4xl mb-2">📍</div>
+          <h3 class="font-semibold mb-2">Drop-off Lokasi</h3>
+          <p>Bawa sendiri ke titik daur ulang terdekat yang sudah kami siapkan.</p>
+        </div>
+        <div class="dark:bg-gray-700 p-4 rounded">
+          <div class="text-4xl mb-2">💰</div>
+          <h3 class="font-semibold mb-2">MS Points & Bills</h3>
+          <p>Konversi sampah menjadi poin, tukarkan dengan pulsa, token listrik, BPJS, dan lainnya.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="layanan" class="py-16 bg-white dark:bg-gray-800 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4 text-center">Layanan Kami</h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center">Kami menyediakan layanan penjemputan sampah dari rumah, drop-off, serta reward konversi poin dari sampah Anda.</p>
+    </div>
+  </section>
+  <section class="bg-white dark:bg-gray-900 py-16 px-4 md:px-16">
+    <div class="max-w-7xl mx-auto">
+      <!-- Judul -->
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Layanan</h2>
+        <p class="text-gray-600 dark:text-gray-300 mt-1">
+          Revolusi daur ulang dari MallSampah untuk semua orang.
+        </p>
+      </div>
+  
+      <!-- Kartu Layanan -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Pick Up -->
+        <div class="border rounded-lg p-6 hover:shadow-md transition">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-green-600 text-2xl">
+              🛻
+            </span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Pick Up</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Foto sampah daur ulangmu, upload ke Aplikasi Mallsampah, kolektor Mallsampah terdekat akan menjemput, menimbang dan membayar sampahmu.
+          </p>
+        </div>
+  
+        <!-- Drop Off -->
+        <div class="border rounded-lg p-6 hover:shadow-md transition">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-blue-600 text-2xl">
+              🚌
+            </span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Drop Off</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Antar langsung sampahmu ke <em>Recycling Centre</em> terdekat, kamu bisa mendaur ulang dengan ukuran kecil seperti satu botol plastik.
+          </p>
+        </div>
+  
+        <!-- Company -->
+        <div class="border rounded-lg p-6 hover:shadow-md transition">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-orange-500 text-2xl">
+              💼
+            </span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Company</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Daur ulang berlangganan untuk bisnis dan kantor, menciptakan bisnis ramah lingkungan bukan sesuatu yang mahal lagi, dapatkan gratis di Mallsampah.
+          </p>
+        </div>
+  
+        <!-- Event -->
+        <div class="border rounded-lg p-6 hover:shadow-md transition">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-red-500 text-2xl">
+              📅
+            </span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Event</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Daftarkan eventmu di fitur ini untuk mengakses layanan daur ulang yang didesain khusus untuk event, atau layanan satu waktu.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="solusi" class="py-16 bg-gray-100 dark:bg-gray-700 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4 text-center">Solusi Kami</h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center">Solusi untuk individu, bisnis, dan pemerintahan. Aplikasi kami mendukung integrasi smart city dan pelaporan lingkungan secara real-time.</p>
+    </div>
+  </section>
+
+  <section class="bg-white dark:bg-gray-900 py-16 px-4 md:px-16">
+    <div class="max-w-7xl mx-auto">
+      <!-- Judul -->
+      <div class="mb-10 flex justify-between items-start">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Solusi Kami</h2>
+          <p class="text-gray-600 dark:text-gray-300 mt-1">
+            Sebuah teknologi untuk mengakhiri sampah.
+          </p>
+        </div>
+        <!-- Tombol panah -->
+        <div class="flex gap-2">
+          <button class="w-9 h-9 rounded-full border text-green-600 hover:bg-green-100">
+            &larr;
+          </button>
+          <button class="w-9 h-9 rounded-full border text-green-600 hover:bg-green-100">
+            &rarr;
+          </button>
+        </div>
+      </div>
+  
+      <!-- Kartu Solusi -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- For Everyone -->
+        <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
+          <img src="https://via.placeholder.com/400x200.png?text=For+Everyone" alt="For Everyone" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Everyone</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              Daur ulang sampah yang Kamu hasilkan melalui aplikasi Mallsampah.
+            </p>
+            <button class="border border-green-500 text-green-700 font-bold py-2 px-4 rounded hover:bg-green-50">
+              Cari Tahu
+            </button>
+          </div>
+        </div>
+  
+        <!-- For Business -->
+        <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
+          <img src="https://via.placeholder.com/400x200.png?text=For+Business" alt="For Business" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Business</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              Ciptakan bisnis dan kantor ramah lingkungan dengan mendaur ulang sampah yang Anda hasilkan.
+            </p>
+            <button class="border border-green-500 text-green-700 font-bold py-2 px-4 rounded hover:bg-green-50">
+              Cari Tahu
+            </button>
+          </div>
+        </div>
+  
+        <!-- For Corporate & Brand -->
+        <div class="border rounded-xl overflow-hidden hover:shadow-md transition">
+          <img src="https://via.placeholder.com/400x200.png?text=For+Corporate" alt="For Corporate & Brand" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">For Corporate & Brand</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+              Teknologi Kami membantu perusahaan/brand untuk mengumpulkan dan memulihkan produk pasca konsumsi mereka.
+            </p>
+            <button class="border border-green-500 text-green-700 font-bold py-2 px-4 rounded hover:bg-green-50">
+              Cari Tahu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="mitra" class="py-16 bg-white dark:bg-gray-800 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4 text-center">Mitra</h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center">Kami bekerja sama dengan bank sampah, pemerintah daerah, dan mitra logistik untuk memperluas jangkauan daur ulang.</p>
+    </div>
+  </section>
+
+  <section class="bg-white dark:bg-gray-900 py-16 px-4 md:px-16">
+    <div class="max-w-7xl mx-auto">
+  
+      <!-- Penghargaan -->
+      <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">Penghargaan dan Pengakuan</h2>
+      <div class="relative">
+        <div class="swiper pengakuanSwiper">
+          <div class="swiper-wrapper items-center">
+            <!-- Item 1 -->
+            <div class="swiper-slide flex justify-center">
+              <a href="https://id.pinterest.com/pin/275564070943832254/" target="_blank">
+                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <!-- Item 2 -->
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/greentech" target="_blank">
+                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <!-- Item 3 -->
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/hubid" target="_blank">
+                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <!-- Item 4 -->
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/indigo" target="_blank">
+                <img src="download (1).jpg" class="h-16 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+          </div>
+          <!-- Nav Buttons -->
+          <div class="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+            <div class="swiper-button-prev w-8 h-8 rounded-full border text-green-600 hover:bg-green-100 flex items-center justify-center"></div>
+          </div>
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+            <div class="swiper-button-next w-8 h-8 rounded-full border text-green-600 hover:bg-green-100 flex items-center justify-center"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Partner Kami -->
+      <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mt-16 mb-6">Partner Kami</h2>
+      <div class="relative">
+        <div class="swiper partnerSwiper">
+          <div class="swiper-wrapper items-center">
+            <!-- Example item -->
+            <div class="swiper-slide flex justify-center">
+              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="https://www.gojek.com/id-id?gad_source=1&gclid=Cj0KCQjwzYLABhD4ARIsALySuCR6xFHnkRk9NcVd9sWHVnhOoCRXVYw37ue3qpbNb82865oZWvEs7VwaAuUJEALw_wcB" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/upnormal" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/cocacola" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/fourpoints" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <a href="/profile/smartcity" target="_blank">
+                <img src="download (1).jpg" class="h-10 grayscale hover:grayscale-0 transition" />
+              </a>
+            </div>
+          </div>
+          <!-- Nav Buttons -->
+          <div class="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+            <div class="swiper-button-prev partner-prev w-8 h-8 rounded-full border text-green-600 hover:bg-green-100 flex items-center justify-center"></div>
+          </div>
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+            <div class="swiper-button-next partner-next w-8 h-8 rounded-full border text-green-600 hover:bg-green-100 flex items-center justify-center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="blog" class="py-16 bg-gray-100 dark:bg-gray-700 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4 text-center">Blog</h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center">Baca artikel, tips, dan update terbaru seputar dunia daur ulang dan gaya hidup ramah lingkungan.</p>
+    </div>
+  </section>
+
+    <!-- Hero Section -->
+    <section class="bg-white py-16">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-green-700 mb-4">Daur Ulang Dimulai dari Kesadaran</h2>
+        <p class="text-gray-600 text-lg">Temukan artikel, tips, dan cerita inspiratif seputar daur ulang sampah di Indonesia.</p>
+      </div>
+    </section>
+  
+    <!-- Blog Grid -->
+    <main class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid md:grid-cols-3 gap-8">
+  
+        <!-- Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://source.unsplash.com/600x400/?plastic,recycle" class="w-full h-48 object-cover" alt="Sampah Plastik">
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-green-700 mb-2">Cara Mudah Daur Ulang Plastik di Rumah</h3>
+            <p class="text-sm text-gray-600 mb-4">Belajar memilah dan mendaur ulang sampah plastik dari rumah sendiri.</p>
+            <a href="#" class="text-green-600 hover:underline text-sm font-medium">Baca Selengkapnya →</a>
+          </div>
+        </div>
+  
+        <!-- Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://source.unsplash.com/600x400/?organic,waste" class="w-full h-48 object-cover" alt="Sampah Organik">
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-green-700 mb-2">Manfaat Mengelola Sampah Organik</h3>
+            <p class="text-sm text-gray-600 mb-4">Mulai kebun kompos kecil dan ubah sisa makanan jadi pupuk alami.</p>
+            <a href="#" class="text-green-600 hover:underline text-sm font-medium">Baca Selengkapnya →</a>
+          </div>
+        </div>
+  
+        <!-- Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition">
+          <img src="https://source.unsplash.com/600x400/?community,recycle" class="w-full h-48 object-cover" alt="Komunitas Daur Ulang">
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-green-700 mb-2">Komunitas Peduli Sampah di Indonesia</h3>
+            <p class="text-sm text-gray-600 mb-4">Bergabung dengan komunitas hijau dan bantu lingkungan lebih bersih.</p>
+            <a href="#" class="text-green-600 hover:underline text-sm font-medium">Baca Selengkapnya →</a>
+          </div>
+        </div>
+  
+      </div>
+    </main>
+
+  <section id="kontak" class="py-16 bg-white dark:bg-gray-800 text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4 text-center">Kontak Kami</h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center">Hubungi kami untuk info lebih lanjut tentang layanan, kemitraan, dan dukungan pengguna.</p>
+    </div>
+  </section>
+
+  <section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 bg-white rounded-lg shadow-md p-8">
+
+      <!-- Contact Info -->
+      <div>
+        <h2 class="text-2xl font-semibold text-green-700 mb-4">Informasi Kontak</h2>
+        <p class="mb-4 text-gray-600">Silakan hubungi kami melalui informasi berikut, atau kirim pesan langsung lewat formulir.</p>
+        <ul class="space-y-3 text-gray-700 text-sm">
+          <li><strong>📍 Alamat:</strong> Jl. Hijau Bersih No. 123, Surabaya</li>
+          <li><strong>📞 Telepon:</strong> 0812-3456-7890</li>
+          <li><strong>📧 Email:</strong> info@mallsampah.com</li>
+        </ul>
+      </div>
+
+      <!-- Contact Form -->
+      <div>
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+            <input type="text" placeholder="Nama Anda" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" placeholder="nama@email.com" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Pesan</label>
+            <textarea rows="5" placeholder="Tulis pesan Anda di sini..." class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+          </div>
+          <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition">Kirim Pesan</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-[#112929] text-white pt-10 pb-6 text-sm">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-10">
+        <!-- Logo dan Sosial Media -->
+        <div>
+          <h2 class="text-xl font-bold mb-4">EcoShal</h2>
+          <div class="flex space-x-4">
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/filled-message.png"/></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png"/></a>
+          </div>
+        </div>
+  
+        <!-- Menu Kolom -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <!-- EcoShal -->
+          <div>
+            <h4 class="font-semibold mb-2">EcoShal</h4>
+            <ul class="space-y-1">
+              <li><a href="#tentang" class="hover:underline">Tentang Kami</a></li>
+              <li><a href="#layanan" class="hover:underline">Layanan</a></li>
+              <li><a href="#mitra" class="hover:underline">Mitra</a></li>
+              <li><a href="#blog" class="hover:underline">Blog</a></li>
+            </ul>
+          </div>
+  
+          <!-- Solusi Kami -->
+          <div>
+            <h4 class="font-semibold mb-2">Solusi Kami</h4>
+            <ul class="space-y-1">
+              <li><a href="#solusi" class="hover:underline">Everyone</a></li>
+              <li><a href="#solusi" class="hover:underline">Business</a></li>
+              <li><a href="#solusi" class="hover:underline">Corporate</a></li>
+              <li><a href="#solusi" class="hover:underline">Smart City</a></li>
+            </ul>
+          </div>
+  
+          <!-- Informasi -->
+          <div>
+            <h4 class="font-semibold mb-2">Informasi</h4>
+            <ul class="space-y-1">
+              <li><a href="#kontak" class="hover:underline">Kontak Kami</a></li>
+              <li><a href="#" class="hover:underline">Bantuan</a></li>
+              <li><a href="#" class="hover:underline">Syarat & Ketentuan</a></li>
+              <li><a href="#" class="hover:underline">Kebijakan Privasi</a></li>
+            </ul>
+          </div>
+  
+          <!-- Download -->
+          <div>
+            <h4 class="font-semibold mb-2">Download</h4>
+            <div class="space-y-2">
+              <a href="#"><img class="w-32" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"/></a>
+              <a href="#"><img class="w-28" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"/></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="border-t border-white/20 my-6"></div>
+      <p class="text-center text-xs text-white/80">&copy; 2025 EcoShal. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+  
+  
+    <script>
+      function toggleLoginModal() {
+        const modal = document.getElementById('loginModal');
+        modal.classList.toggle('hidden');
+        modal.classList.toggle('flex');
+      }
+    
+      function showLogin() {
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('signupForm').classList.add('hidden');
+        document.getElementById('loginTab').classList.add('text-primary', 'font-semibold');
+        document.getElementById('signupTab').classList.remove('text-primary', 'font-semibold');
+        document.getElementById('signupTab').classList.add('text-gray-500');
+      }
+    
+      function showSignup() {
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('signupForm').classList.remove('hidden');
+        document.getElementById('signupTab').classList.add('text-primary', 'font-semibold');
+        document.getElementById('loginTab').classList.remove('text-primary', 'font-semibold');
+        document.getElementById('loginTab').classList.add('text-gray-500');
+      }
+      let currentIndex = 0;
+  const carousel = document.getElementById("carouselImages");
+  const slides = carousel.children;
+
+  function updateCarousel() {
+    const offset = -currentIndex * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+
+  // Optional: auto slide every 5 seconds
+  setInterval(nextSlide, 5000);
+  new Swiper('.pengakuanSwiper', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    loop: true,
+    breakpoints: {
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 5 },
+    }
+  });
+
+  new Swiper('.partnerSwiper', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.partner-next',
+      prevEl: '.partner-prev',
+    },
+    loop: true,
+    breakpoints: {
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 6 },
+    }
+  });
+ 
+function toggleDarkMode() {
+  const html = document.documentElement;
+  html.classList.toggle('dark');
+
+  // Simpan preferensi di localStorage
+  if (html.classList.contains('dark')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Cek preferensi user saat pertama kali load
+window.onload = () => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+};
+    </script>
+    
+
+</body>
+</html>
